@@ -10,6 +10,7 @@ pipeline {
         maven 'apache maven 3.6.3'
         jdk 'JDK 8'
     }
+
     stages {
         stage ('Clean') {
             steps {
@@ -37,14 +38,6 @@ pipeline {
                 success {
                     junit 'target/surefire-reports/**/*.xml'
                 }
-            }
-        }
-
-        stage ('Package') {
-            steps {
-                sh 'mvn package'
-                archiveArtifacts artifacts: 'src/**/*.java'
-                archiveArtifacts artifacts: 'target/*.jar'
             }
         }
 
